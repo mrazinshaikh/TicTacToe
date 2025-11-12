@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+    --color-pancho-50: #fdf7ef;
+    --color-pancho-100: #f9ecdb;
+    --color-pancho-200: #efcca2;
+    --color-pancho-300: #eabb87;
+    --color-pancho-400: #e19656;
+    --color-pancho-500: #da7b35;
+    --color-pancho-600: #cb642b;
+    --color-pancho-700: #a94d25;
+    --color-pancho-800: #873e25;
+    --color-pancho-900: #6d3521;
+    --color-pancho-950: #3b190f;
+}

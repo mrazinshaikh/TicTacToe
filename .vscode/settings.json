@@ -1,0 +1,7 @@
+{
+    "eslint.useFlatConfig": true,
+    "editor.quickSuggestions": {
+        "strings": "on"
+    },
+    "tailwindCSS.classAttributes": ["class", "ui"]
+}
