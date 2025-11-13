@@ -50,6 +50,9 @@
                 />
             </div>
         </div>
+
+        <!-- <LazyResultGameWon /> -->
+        <!-- <LazyResultGameWon v-if="game.winner.value" /> -->
     </div>
 </template>
 

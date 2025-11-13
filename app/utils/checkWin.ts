@@ -1,3 +1,5 @@
+import type { CellValue } from '~/types/game.types';
+
 export interface CheckWinResponse {
     won: boolean;
     resultData: boolean[][];
