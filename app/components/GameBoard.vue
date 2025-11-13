@@ -23,9 +23,14 @@
                 </div> -->
                     <UCheckbox
                         :value="currentPlayer"
-                        :disabled="isBoardLoading || data[rowIndex]?.[colIndex] !== null"
+                        :disabled="
+                            isBoardLoading || isLoading || data[rowIndex]?.[colIndex] !== null
+                        "
                         :model-value="data[rowIndex]?.[colIndex] !== null"
-                        :ui="{ base: 'hidden!', wrapper: 'ms-0' }"
+                        :ui="{
+                            base: 'hidden!',
+                            wrapper: 'ms-0',
+                        }"
                         @update:model-value="() => updateCell(rowIndex, colIndex)"
                     >
                         <template #label>
@@ -58,7 +63,7 @@ const props = defineProps<{
 
 const { data, currentPlayer, updateCell, gameWonBy, resultData } = props.board;
 
-const { rows, cols, isBoardLoading } = props.board;
+const { rows, cols, isLoading, isBoardLoading } = props.board;
 </script>
 
 <style>

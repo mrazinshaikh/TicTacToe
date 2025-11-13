@@ -28,7 +28,7 @@ export const useBoard = (params: UseBoardParams = { rows: 3, cols: 3 }): UseBoar
     const rows = params.rows;
     const cols = params.cols;
 
-    const init = (defaultValue: CellValue | boolean) => initBoardMatrix(rows, cols, defaultValue);
+    const init = <T extends CellValue | boolean>(defaultValue: T): T extends boolean ? boolean[][] : CellValue[][] => initBoardMatrix(rows, cols, defaultValue);
 
     const data = ref<CellValue[][]>(init(null));
 
@@ -52,11 +52,8 @@ export const useBoard = (params: UseBoardParams = { rows: 3, cols: 3 }): UseBoar
             }
 
             data.value[rowIndex][colIndex] = currentPlayer.value as CellValue;
-            // const start = performance.now();
-            console.time('checkWin');
+            isLoading.value = true;
             const gameWinResponse = checkWin(rows, cols, data.value, currentPlayer.value);
-            // const end = performance.now();
-            console.timeEnd('checkWin');
 
             if (gameWinResponse && gameWinResponse.won) {
                 gameWonBy.value = currentPlayer.value;
