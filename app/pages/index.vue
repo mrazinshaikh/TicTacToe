@@ -33,10 +33,6 @@
 const game = useGame();
 
 provide(GameProvideKey, game);
-
-const resetGame = () => {
-    game.board.resetGame();
-};
 </script>
 
 <style></style>
