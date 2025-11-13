@@ -5,8 +5,8 @@
             :class="[{ 'cursor-progress opacity-10 animate-pulse': isBoardLoading }]"
             :disabled="isBoardLoading"
             :style="{
-                gridTemplateColumns: `repeat(${rows}, minmax(0, 1fr))`,
-                gridTemplateRows: `repeat(${cols}, minmax(0, 1fr))`,
+                gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+                gridTemplateRows: `repeat(${rows}, minmax(0, 1fr))`,
             }"
         >
             <template
@@ -17,21 +17,17 @@
                     v-for="(col, colIndex) in Array.from(Array(cols))"
                     :key="`board_column_${colIndex}`"
                 >
-                    <!-- <div class="size-24 border border-pancho-600">
-                    Row: {{ row }} <br/>
-                    Col: {{ col }} <br/>
-                </div> -->
                     <UCheckbox
                         :value="currentPlayer"
                         :disabled="
-                            isBoardLoading || isLoading || data[rowIndex]?.[colIndex] !== null
+                            isBoardLoading || isLoading || board[rowIndex]?.[colIndex] !== null
                         "
-                        :model-value="data[rowIndex]?.[colIndex] !== null"
+                        :model-value="board[rowIndex]?.[colIndex] !== null"
                         :ui="{
                             base: 'hidden!',
                             wrapper: 'ms-0',
                         }"
-                        @update:model-value="() => updateCell(rowIndex, colIndex)"
+                        @update:model-value="() => handleCellClick(rowIndex, colIndex)"
                     >
                         <template #label>
                             <div
@@ -39,10 +35,10 @@
                                 :class="[{ 'pointer-events-none': isBoardLoading }]"
                             >
                                 <PlayerIcon
-                                    v-if="data[rowIndex]?.[colIndex]"
-                                    :value="data[rowIndex]?.[colIndex]"
+                                    v-if="board[rowIndex]?.[colIndex]"
+                                    :value="board[rowIndex]?.[colIndex]"
                                     :class="`w-full h-full ${
-                                        gameWonBy && resultData[rowIndex]?.[colIndex]
+                                        winningCells[rowIndex]?.[colIndex]
                                             ? 'zoom-scale-animation'
                                             : ''
                                     }`"
@@ -57,13 +53,25 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps<{
-    board: UseBoardType;
+import type { CellValue } from '~/types/game.types';
+
+defineProps<{
+    board: CellValue[][];
+    currentPlayer: CellValue;
+    winningCells: boolean[][];
+    isLoading: boolean;
+    isBoardLoading: boolean;
+    rows: number;
+    cols: number;
 }>();
 
-const { data, currentPlayer, updateCell, gameWonBy, resultData } = props.board;
+const emit = defineEmits<{
+    (event: 'cell-clicked', rowIndex: number, colIndex: number): void;
+}>();
 
-const { rows, cols, isLoading, isBoardLoading } = props.board;
+const handleCellClick = (rowIndex: number, colIndex: number): void => {
+    emit('cell-clicked', rowIndex, colIndex);
+};
 </script>
 
 <style>

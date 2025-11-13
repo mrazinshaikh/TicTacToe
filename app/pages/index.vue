@@ -6,12 +6,36 @@
             </h1>
         </div>
 
-        <GameBoard :board="game.board" />
+        <GameBoard
+            :board="game.board.value"
+            :current-player="game.currentPlayer.value"
+            :winning-cells="game.resultData.value"
+            :is-loading="game.isLoading.value"
+            :is-board-loading="game.isBoardLoading.value"
+            :rows="game.rows"
+            :cols="game.cols"
+            @cell-clicked="handleCellClick"
+        />
 
         <div class="w-full mt-4">
             <div class="w-max mx-auto flex items-center justify-center gap-2">
-                <PlayerIcon class="size-6" />
-                <span class="text-lg"> Your Turn </span>
+                <template v-if="game.winner.value">
+                    <PlayerIcon
+                        :value="game.winner.value"
+                        class="size-6"
+                    />
+                    <span class="text-lg font-bold"> Won the Game! </span>
+                </template>
+                <template v-else-if="game.isDraw.value">
+                    <span class="text-lg font-bold"> It's a Draw! </span>
+                </template>
+                <template v-else>
+                    <PlayerIcon
+                        :value="game.currentPlayer.value"
+                        class="size-6"
+                    />
+                    <span class="text-lg"> Your Turn </span>
+                </template>
             </div>
         </div>
 
@@ -22,7 +46,7 @@
                     color="neutral"
                     icon="i-lucide-refresh-cw"
                     label="Reset Game"
-                    @click="game.board.resetGame"
+                    @click="handleResetGame"
                 />
             </div>
         </div>
@@ -30,9 +54,19 @@
 </template>
 
 <script lang="ts" setup>
+import { GameProvideKey } from '~/utils/shared';
+
 const game = useGame();
 
 provide(GameProvideKey, game);
+
+const handleCellClick = (rowIndex: number, colIndex: number): void => {
+    game.makeMove(rowIndex, colIndex);
+};
+
+const handleResetGame = (): void => {
+    game.resetGame();
+};
 </script>
 
 <style></style>
