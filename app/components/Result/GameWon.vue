@@ -23,7 +23,6 @@ import particlesOptions from '~/config/tsParticles.config';
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
 .text-shadows {
     --color-primary: #5192ed;
     --color-secondary: #69a1f0;
@@ -40,7 +39,7 @@ import particlesOptions from '~/config/tsParticles.config';
 .text-shadows {
     text-shadow: 3px 3px 0 var(--color-secondary), 6px 6px 0 var(--color-tertiary),
         9px 9px var(--color-quaternary), 12px 12px 0 var(--color-quinary);
-    font-family: bungee, sans-serif;
+    font-family: 'Bungee', sans-serif;
     font-weight: 400;
     text-transform: uppercase;
     font-size: calc(2rem + 5vw);
