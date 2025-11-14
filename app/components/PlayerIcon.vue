@@ -7,20 +7,23 @@
 </template>
 
 <script lang="ts" setup>
+import { PLAYER_O, PLAYER_X } from '~/constants/game.constants';
+import type { CellValue } from '~/types/game.types';
+
 const props = defineProps<{
     value?: CellValue;
 }>();
 
 const game = inject(GameProvideKey);
-const currentPlayer = computed(() => game?.board.currentPlayer.value);
+const currentPlayer = computed(() => game?.winner.value);
 
 const iconName = computed(() => {
     const value = props.value ?? currentPlayer?.value;
 
-    if (value === 'X') {
+    if (value === PLAYER_X) {
         return 'i-lucide-x';
     }
-    else if (value === 'O') {
+    else if (value === PLAYER_O) {
         return 'i-lucide-circle';
     }
 

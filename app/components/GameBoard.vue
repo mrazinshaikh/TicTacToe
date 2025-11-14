@@ -80,7 +80,7 @@ const handleCellClick = (rowIndex: number, colIndex: number): void => {
         transform: scale(1);
     }
     to {
-        transform: scale(1.5);
+        transform: scale(1.2);
     }
 }
 
