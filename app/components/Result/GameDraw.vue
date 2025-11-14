@@ -11,18 +11,11 @@
                 </h2>
             </div>
         </div>
-
-        <!-- <ClientOnly>
-            <vue-particles
-                id="tsparticles"
-                :options="particlesOptions"
-            />
-        </ClientOnly> -->
     </ResultContainer>
 </template>
 
 <script setup lang="ts">
-// import particlesOptions from '~/config/tsParticles.config';
+//
 </script>
 
 <style scoped>
@@ -43,13 +36,8 @@
     text-align: center;
     margin: 0;
     color: var(--color-primary);
-    /* animation: shadows 1.2s ease-in infinite; */
+    animation: shadows 1.2s ease-in infinite;
     letter-spacing: 0.4rem;
-    /* text-shadow: 3px 3px 0 var(--color-secondary), 6px 6px 0 var(--color-tertiary),
-            9px 9px var(--color-quaternary); */
-            transform: translate(-12px, -12px);
-        text-shadow: 3px 3px 0 var(--color-secondary), 6px 6px 0 var(--color-tertiary),
-            9px 9px var(--color-quaternary), 12px 12px 0 var(--color-quinary);
 }
 
 @keyframes shadows {
