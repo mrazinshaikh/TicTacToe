@@ -1,6 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
 @import "tailwindcss";
 @import "@nuxt/ui";
-@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
 
 @theme {
     /* Nuxt UI overrides */

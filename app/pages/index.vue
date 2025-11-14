@@ -52,6 +52,7 @@
         </div>
 
         <LazyResultGameWon v-if="game.winner.value" />
+        <LazyResultGameDraw v-else-if="game.isDraw.value" />
     </div>
 </template>
 
