@@ -10,7 +10,7 @@
                     variant="ghost"
                     icon="i-lucide-x"
                     class="hover:bg-transparent! cursor-pointer text-white"
-                    @click="emit('close')"
+                    @click="game.closeResult()"
                 />
             </div>
             <slot />
@@ -19,7 +19,5 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits<{
-    (e: 'close'): void;
-}>();
+const game = useGameStore();
 </script>

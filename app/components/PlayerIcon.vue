@@ -14,8 +14,8 @@ const props = defineProps<{
     value?: CellValue;
 }>();
 
-const game = inject(GameProvideKey);
-const currentPlayer = computed(() => game?.winner.value);
+const game = useGameStore();
+const currentPlayer = computed(() => game?.winner);
 
 const iconName = computed(() => {
     const value = props.value ?? currentPlayer?.value;

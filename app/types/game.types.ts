@@ -41,6 +41,7 @@ export interface PlayerManager {
  * Game state interface
  */
 export interface GameState {
+    isResultOpen: Ref<boolean>;
     winner: Ref<CellValue | null>;
     resultData: Ref<boolean[][]>;
     isGameOver: Ref<boolean>;
@@ -48,6 +49,7 @@ export interface GameState {
     setWinner: (player: CellValue, winningCells: boolean[][]) => void;
     setDraw: () => void;
     reset: () => void;
+    closeResult: () => void;
 }
 
 /**

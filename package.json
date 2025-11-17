@@ -20,6 +20,7 @@
     "eslint": "^9.39.1",
     "nuxt": "^4.2.1",
     "pinia": "^3.0.4",
+    "pinia-plugin-persistedstate": "^4.7.1",
     "tailwindcss": "^4.1.17",
     "tsparticles": "^3.9.1",
     "typescript": "^5.9.3",

@@ -1,30 +1,24 @@
-import type { UseGameReturn } from '~/types/game.types';
+import { defineStore } from 'pinia';
 import { getGameConfig } from '~/config/game.config';
-import { useBoardState, setCellValue, resetBoard } from './useBoardState';
-import { usePlayerManager } from './usePlayerManager';
-import { useGameState, checkGameStatus } from './useGameState';
-import { useLoadingState } from './useLoadingState';
-import { isCellEmpty } from '~/utils/board.utils';
+import type { GameConfig } from '~/types/game.types';
 
-/**
- * Main game orchestrator composable
- * Coordinates all sub-composables and provides unified game API
- *
- * @deprecated - Remove in-favor of 'app/stores/useGameStore.ts'
- */
-export const useGame = (): UseGameReturn => {
-    const config = getGameConfig();
+export const useGameStore = defineStore('game-store', () => {
+    const config = ref(getGameConfig());
+
+    function updateGameConfig(appConfig: Partial<GameConfig>) {
+        config.value = { ...config.value, ...appConfig };
+    };
 
     // Initialize sub-composables
-    const boardState = useBoardState(config.rows, config.cols);
-    const playerManager = usePlayerManager(config.defaultPlayer);
-    const gameState = useGameState(config.rows, config.cols);
+    const boardState = useBoardState(config.value.rows, config.value.cols);
+    const playerManager = usePlayerManager(config.value.defaultPlayer);
+    const gameState = useGameState(config.value.rows, config.value.cols);
     const loadingState = useLoadingState();
 
     /**
      * Make a move on the board
      */
-    const makeMove = (rowIndex: number, colIndex: number): void => {
+    function makeMove(rowIndex: number, colIndex: number): void {
         // Prevent moves if game is over
         if (gameState.isGameOver.value) {
             return;
@@ -65,7 +59,7 @@ export const useGame = (): UseGameReturn => {
     /**
      * Reset the game to initial state
      */
-    const resetGame = (): void => {
+    function resetGame(): void {
         resetBoard(boardState);
         playerManager.resetPlayer();
         gameState.reset();
@@ -74,6 +68,7 @@ export const useGame = (): UseGameReturn => {
     };
 
     return {
+        config,
         // Board state
         board: boardState.data,
         rows: boardState.rows,
@@ -87,6 +82,7 @@ export const useGame = (): UseGameReturn => {
         resultData: gameState.resultData,
         isGameOver: gameState.isGameOver,
         isDraw: gameState.isDraw,
+        isResultOpen: gameState.isResultOpen,
 
         // Loading state
         isLoading: loadingState.isLoading,
@@ -95,5 +91,13 @@ export const useGame = (): UseGameReturn => {
         // Actions
         makeMove,
         resetGame,
+        updateGameConfig,
+        closeResult: gameState.closeResult,
     };
-};
+}, {
+    persist: {
+        storage: piniaPluginPersistedstate.cookies({
+            maxAge: 60 * 60,
+        }),
+    },
+});

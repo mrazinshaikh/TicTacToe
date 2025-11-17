@@ -8,17 +8,20 @@ import { isBoardFull } from '~/utils/board.utils';
  * Integrates with checkWin utility
  */
 export const useGameState = (rows: number, cols: number): GameState => {
+    const isResultOpen = ref<boolean>(true);
     const winner = ref<CellValue | null>(null);
     const resultData = ref<boolean[][]>(initBoardMatrix(rows, cols, false));
     const isGameOver = computed(() => winner.value !== null || isDraw.value);
     const isDraw = ref<boolean>(false);
 
     const setWinner = (player: CellValue, winningCells: boolean[][]): void => {
+        isResultOpen.value = true;
         winner.value = player;
         resultData.value = winningCells;
     };
 
     const setDraw = (): void => {
+        isResultOpen.value = true;
         isDraw.value = true;
     };
 
@@ -26,9 +29,15 @@ export const useGameState = (rows: number, cols: number): GameState => {
         winner.value = null;
         resultData.value = initBoardMatrix(rows, cols, false);
         isDraw.value = false;
+        isResultOpen.value = false;
+    };
+
+    const closeResult = (): void => {
+        isResultOpen.value = false;
     };
 
     return {
+        isResultOpen,
         winner,
         resultData,
         isGameOver,
@@ -36,6 +45,7 @@ export const useGameState = (rows: number, cols: number): GameState => {
         setWinner,
         setDraw,
         reset,
+        closeResult,
     };
 };
 

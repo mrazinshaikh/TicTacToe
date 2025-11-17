@@ -1,6 +1,4 @@
-import type { UseGameReturn, CellValue } from '~/types/game.types';
-
-export const GameProvideKey = Symbol() as InjectionKey<UseGameReturn>;
+import type { CellValue } from '~/types/game.types';
 
 /**
  * Initialize a 2D matrix for the game board

@@ -9,8 +9,9 @@
             </div>
         </div>
 
-        <ClientOnly v-if="blast">
+        <ClientOnly>
             <vue-particles
+                v-if="blast"
                 id="tsparticles"
                 :options="particlesOptions"
             />

@@ -7,11 +7,11 @@
         </div>
 
         <GameBoard
-            :board="game.board.value"
-            :current-player="game.currentPlayer.value"
-            :winning-cells="game.resultData.value"
-            :is-loading="game.isLoading.value"
-            :is-board-loading="game.isBoardLoading.value"
+            :board="game.board"
+            :current-player="game.currentPlayer"
+            :winning-cells="game.resultData"
+            :is-loading="game.isLoading"
+            :is-board-loading="game.isBoardLoading"
             :rows="game.rows"
             :cols="game.cols"
             @cell-clicked="handleCellClick"
@@ -19,19 +19,19 @@
 
         <div class="w-full mt-4">
             <div class="w-max mx-auto flex items-center justify-center gap-2">
-                <template v-if="game.winner.value">
+                <template v-if="game.winner">
                     <PlayerIcon
-                        :value="game.winner.value"
+                        :value="game.winner"
                         class="size-6"
                     />
                     <span class="text-lg font-bold"> Won the Game! </span>
                 </template>
-                <template v-else-if="game.isDraw.value">
+                <template v-else-if="game.isDraw">
                     <span class="text-lg font-bold"> It's a Draw! </span>
                 </template>
                 <template v-else>
                     <PlayerIcon
-                        :value="game.currentPlayer.value"
+                        :value="game.currentPlayer"
                         class="size-6"
                     />
                     <span class="text-lg"> Your Turn </span>
@@ -51,25 +51,33 @@
             </div>
         </div>
 
-        <LazyResultGameWon v-if="game.winner.value" />
-        <LazyResultGameDraw v-else-if="game.isDraw.value" />
+        <TransitionGroup name="fade">
+            <LazyResultGameWon v-if="game.winner && game.isResultOpen" />
+            <LazyResultGameDraw v-else-if="game.isDraw && game.isResultOpen" />
+        </TransitionGroup>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { GameProvideKey } from '~/utils/shared';
+const game = useGameStore();
 
-const game = useGame();
-
-provide(GameProvideKey, game);
-
-const handleCellClick = (rowIndex: number, colIndex: number): void => {
+function handleCellClick(rowIndex: number, colIndex: number): void {
     game.makeMove(rowIndex, colIndex);
-};
+}
 
-const handleResetGame = (): void => {
+function handleResetGame(): void {
     game.resetGame();
-};
+}
 </script>
 
-<style></style>
+<style>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+</style>
