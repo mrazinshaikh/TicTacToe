@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <ClientOnly>
+        <ClientOnly v-if="blast">
             <vue-particles
                 id="tsparticles"
                 :options="particlesOptions"
@@ -20,6 +20,18 @@
 
 <script setup lang="ts">
 import particlesOptions from '~/config/tsParticles.config';
+
+const blast = ref(true);
+
+onMounted(() => {
+    const timeout = setTimeout(() => {
+        blast.value = false;
+    }, 5000);
+
+    return () => {
+        clearTimeout(timeout);
+    };
+});
 </script>
 
 <style scoped>
@@ -39,7 +51,7 @@ import particlesOptions from '~/config/tsParticles.config';
 .text-shadows {
     text-shadow: 3px 3px 0 var(--color-secondary), 6px 6px 0 var(--color-tertiary),
         9px 9px var(--color-quaternary), 12px 12px 0 var(--color-quinary);
-    font-family: 'Bungee', sans-serif;
+    font-family: "Bungee", sans-serif;
     font-weight: 400;
     text-transform: uppercase;
     font-size: calc(2rem + 5vw);

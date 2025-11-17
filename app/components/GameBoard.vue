@@ -31,7 +31,7 @@
                     >
                         <template #label>
                             <div
-                                class="size-24 border border-pancho-600"
+                                class="relative size-24 border border-pancho-600 group"
                                 :class="[{ 'pointer-events-none': isBoardLoading }]"
                             >
                                 <PlayerIcon
@@ -42,6 +42,11 @@
                                             ? 'zoom-scale-animation'
                                             : ''
                                     }`"
+                                />
+                                <PlayerIcon
+                                    v-else
+                                    :value="currentPlayer"
+                                    :class="'absolute hidden indent-0 w-full h-full pointer-events-none opacity-20 group-hover:block'"
                                 />
                             </div>
                         </template>
