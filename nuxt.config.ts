@@ -2,7 +2,7 @@
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
-    modules: ['@nuxt/eslint', '@nuxt/ui'],
+    modules: ['@nuxt/eslint', '@nuxt/ui', '@pinia/nuxt'],
     devtools: { enabled: process.env.NODE_ENV === 'development' },
 
     css: ['./app/assets/css/main.css'],
