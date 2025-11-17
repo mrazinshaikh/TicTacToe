@@ -8,7 +8,7 @@ const config = {
             options: {
                 image: [
                     {
-                        src: 'https://particles.js.org/images/fruits/apple.png',
+                        src: '/assets/images/fruits/apple.png',
                         width: 32,
                         height: 32,
                         particles: {
@@ -16,13 +16,13 @@ const config = {
                         },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/avocado.png',
+                        src: '/assets/images/fruits/avocado.png',
                         width: 32,
                         height: 32,
                         particles: { size: { value: 16 } },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/banana.png',
+                        src: '/assets/images/fruits/banana.png',
                         width: 32,
                         height: 32,
                         particles: {
@@ -30,13 +30,13 @@ const config = {
                         },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/berries.png',
+                        src: '/assets/images/fruits/berries.png',
                         width: 32,
                         height: 32,
                         particles: { size: { value: 16 } },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/cherry.png',
+                        src: '/assets/images/fruits/cherry.png',
                         width: 32,
                         height: 32,
                         particles: {
@@ -44,13 +44,13 @@ const config = {
                         },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/grapes.png',
+                        src: '/assets/images/fruits/grapes.png',
                         width: 32,
                         height: 32,
                         particles: { size: { value: 16 } },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/lemon.png',
+                        src: '/assets/images/fruits/lemon.png',
                         width: 32,
                         height: 32,
                         particles: {
@@ -58,13 +58,13 @@ const config = {
                         },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/orange.png',
+                        src: '/assets/images/fruits/orange.png',
                         width: 32,
                         height: 32,
                         particles: { size: { value: 16 } },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/peach.png',
+                        src: '/assets/images/fruits/peach.png',
                         width: 32,
                         height: 32,
                         particles: {
@@ -72,13 +72,13 @@ const config = {
                         },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/pear.png',
+                        src: '/assets/images/fruits/pear.png',
                         width: 32,
                         height: 32,
                         particles: { size: { value: 16 } },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/pepper.png',
+                        src: '/assets/images/fruits/pepper.png',
                         width: 32,
                         height: 32,
                         particles: {
@@ -86,25 +86,25 @@ const config = {
                         },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/plum.png',
+                        src: '/assets/images/fruits/plum.png',
                         width: 32,
                         height: 32,
                         particles: { size: { value: 16 } },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/star.png',
+                        src: '/assets/images/fruits/star.png',
                         width: 32,
                         height: 32,
                         particles: { size: { value: 16 } },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/strawberry.png',
+                        src: '/assets/images/fruits/strawberry.png',
                         width: 32,
                         height: 32,
                         particles: { size: { value: 16 } },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/watermelon.png',
+                        src: '/assets/images/fruits/watermelon.png',
                         width: 32,
                         height: 32,
                         particles: {
@@ -112,7 +112,7 @@ const config = {
                         },
                     },
                     {
-                        src: 'https://particles.js.org/images/fruits/watermelon_slice.png',
+                        src: '/assets/images/fruits/watermelon_slice.png',
                         width: 32,
                         height: 32,
                         particles: { size: { value: 16 } },
