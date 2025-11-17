@@ -1,5 +1,5 @@
 <template>
-    <footer class="w-full px-3 py-4 border-t border-pancho-600 flex items-center justify-between">
+    <footer class="w-full px-3 py-4 border-t border-pancho-600 flex flex-col gap-4 md:gap-0 md:flex-row items-center justify-between">
         <div class="flex items-center gap-1">
             <span>Made With</span>
             <UIcon

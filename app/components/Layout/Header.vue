@@ -7,7 +7,7 @@
                     class="size-8 text-pancho-700"
                 />
             </span>
-            <div class="flex flex-col items-start gap-0.5">
+            <div class="flex flex-col items-start gap-0">
                 <h2 class="text-xl lg:text-3xl font-bold">
                     Tic Tac Toe
                 </h2>
