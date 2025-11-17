@@ -1,10 +1,6 @@
 <template>
     <div class="">
-        <div class="flex items-center justify-center p-4 mb-12">
-            <h1 class="text-5xl">
-                Tic Tac Toe
-            </h1>
-        </div>
+        <GameScore />
 
         <GameBoard />
 
@@ -30,17 +26,19 @@
             </div>
         </div>
 
-        <div class="w-full mt-4">
-            <div class="w-max mx-auto flex items-center justify-center gap-2">
-                <UButton
-                    variant="solid"
-                    color="neutral"
-                    icon="i-lucide-refresh-cw"
-                    label="Reset Game"
-                    @click="handleResetGame"
-                />
+        <Transition
+            name="fade"
+            appear
+        >
+            <div
+                v-if="game.winner || !game.isFreshBoard"
+                class="w-full mt-4"
+            >
+                <div class="w-max mx-auto">
+                    <GameRestButton />
+                </div>
             </div>
-        </div>
+        </Transition>
 
         <TransitionGroup name="fade">
             <LazyResultGameWon v-if="game.winner && game.isResultOpen" />
@@ -51,20 +49,4 @@
 
 <script lang="ts" setup>
 const game = useGameStore();
-
-function handleResetGame(): void {
-    game.resetGame();
-}
 </script>
-
-<style>
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-}
-</style>

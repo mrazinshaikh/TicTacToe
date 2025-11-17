@@ -1,4 +1,4 @@
-import type { CellValue, GameState } from '~/types/game.types';
+import type { CellValue, GameState, Player } from '~/types/game.types';
 import { checkWin, type WinResponse } from '~/utils/checkWin';
 import { initBoardMatrix } from '~/utils/shared';
 import { isBoardFull } from '~/utils/board.utils';
@@ -18,6 +18,8 @@ export const useGameState = (rows: number, cols: number): GameState => {
     const isGameOver = computed(() => winner.value !== null || isDraw.value);
     const isDraw = ref<boolean>(false);
 
+    const gameScore = useGameScore();
+
     const setWinner = (player: CellValue, winResult: WinResponse): void => {
         isResultOpen.value = true;
         winner.value = player;
@@ -27,6 +29,8 @@ export const useGameState = (rows: number, cols: number): GameState => {
             type: winResult.type,
             index: winResult.index,
         };
+
+        gameScore.updateScore(player?.toUpperCase() as Player);
     };
 
     const setDraw = (): void => {

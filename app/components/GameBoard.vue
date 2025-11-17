@@ -81,8 +81,6 @@
                     </UCheckbox>
                 </template>
             </template>
-
-            <slot name="winning-line" />
         </div>
     </div>
 </template>

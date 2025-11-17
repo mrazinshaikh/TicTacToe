@@ -5,16 +5,23 @@ import type { GameConfig } from '~/types/game.types';
 export const useGameStore = defineStore('game-store', () => {
     const config = ref(getGameConfig());
 
+    const isFreshBoard = ref(true);
+    // Initialize sub-composables
+    let boardState = useBoardState(config.value.rows, config.value.cols);
+    let playerManager = usePlayerManager(config.value.defaultPlayer);
+    let gameState = useGameState(config.value.rows, config.value.cols);
+    let loadingState = useLoadingState();
+
     function updateGameConfig(appConfig: Partial<GameConfig>) {
         config.value = { ...config.value, ...appConfig };
+
+        // Rest game state.
+        boardState = useBoardState(config.value.rows, config.value.cols);
+        playerManager = usePlayerManager(config.value.defaultPlayer);
+        gameState = useGameState(config.value.rows, config.value.cols);
+        loadingState = useLoadingState();
+        isFreshBoard.value = true;
     };
-
-    // Initialize sub-composables
-    const boardState = useBoardState(config.value.rows, config.value.cols);
-    const playerManager = usePlayerManager(config.value.defaultPlayer);
-    const gameState = useGameState(config.value.rows, config.value.cols);
-    const loadingState = useLoadingState();
-
     /**
      * Make a move on the board
      */
@@ -23,6 +30,8 @@ export const useGameStore = defineStore('game-store', () => {
         if (gameState.isGameOver.value) {
             return;
         }
+
+        isFreshBoard.value = false;
 
         // Start loading
         loadingState.startLoading();
@@ -65,9 +74,11 @@ export const useGameStore = defineStore('game-store', () => {
         gameState.reset();
         loadingState.setLoading(false);
         loadingState.setBoardLoading(false);
+        isFreshBoard.value = true;
     };
 
     return {
+        isFreshBoard,
         config,
         // Board state
         board: boardState.data,
