@@ -23,7 +23,7 @@
 import { PLAYER_O, PLAYER_X } from '~/constants/game.constants';
 
 const game = useGameStore();
-const gameScore = useGameScore();
+const gameScore = useGameScoreStore();
 
 const playerXScore = computed(() => gameScore.player_wins[PLAYER_X]);
 const playerOScore = computed(() => gameScore.player_wins[PLAYER_O]);

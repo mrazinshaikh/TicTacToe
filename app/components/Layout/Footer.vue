@@ -13,6 +13,14 @@
 
         <div>
             <NuxtLink
+                class="hover:underline"
+                href="https://github.com/mrazinshaikh/TicTacToe/blob/main/LICENSE"
+                target="_blank"
+            >GNU GPL v3.0</NuxtLink>
+        </div>
+
+        <div>
+            <NuxtLink
                 href="https://github.com/mrazinshaikh/TicTacToe"
                 target="_blank"
                 class="group"

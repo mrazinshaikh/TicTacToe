@@ -18,10 +18,14 @@
             </div>
         </div>
 
-        <!-- <div>End Block</div> -->
+        <!-- End Block -->
+        <div>
+            <GameSettings />
+        </div>
     </header>
 </template>
 
 <script setup lang="ts">
-import MRazinShaikhGithub from '../Credits/MRazinShaikhGithub.vue';
+import MRazinShaikhGithub from '~/components/Credits/MRazinShaikhGithub.vue';
+import GameSettings from '~/components/Layout/GameSettings.vue';
 </script>

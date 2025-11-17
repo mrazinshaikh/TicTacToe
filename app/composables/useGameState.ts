@@ -18,7 +18,7 @@ export const useGameState = (rows: number, cols: number): GameState => {
     const isGameOver = computed(() => winner.value !== null || isDraw.value);
     const isDraw = ref<boolean>(false);
 
-    const gameScore = useGameScore();
+    const gameScore = useGameScoreStore();
 
     const setWinner = (player: CellValue, winResult: WinResponse): void => {
         isResultOpen.value = true;
