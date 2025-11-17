@@ -1,22 +1,19 @@
 import type { CellValue } from '~/types/game.types';
 
-export interface CheckWinResponse {
-    won: boolean;
-    resultData: boolean[][];
+export interface WinLine {
+    type: 'row' | 'col' | 'diag' | 'anti-diag' | null;
+    index: number;
+}
+export interface WinResponse extends WinLine {
+    resultMatrix: boolean[][];
 }
 
-export function gameWonResponse(value: boolean, resultData: boolean[][]): CheckWinResponse {
-    return {
-        won: value,
-        resultData: resultData,
-    };
-}
 export function checkWin(
     rows: number,
     cols: number,
     data: CellValue[][],
     currentPlayer: CellValue,
-): false | CheckWinResponse {
+): false | WinResponse {
     // Check rows
     for (let row = 0; row < rows; row++) {
         let matchCount = 0;
@@ -34,7 +31,7 @@ export function checkWin(
             for (let col = 0; col < cols; col++) {
                 resultData[row]![col] = true;
             }
-            return { won: true, resultData };
+            return { resultMatrix: resultData, type: 'row', index: row };
         }
     }
 
@@ -55,7 +52,7 @@ export function checkWin(
             for (let row = 0; row < rows; row++) {
                 resultData[row]![col] = true;
             }
-            return { won: true, resultData };
+            return { resultMatrix: resultData, type: 'col', index: col };
         }
     }
 
@@ -75,7 +72,7 @@ export function checkWin(
         for (let i = 0; i < rows; i++) {
             resultData[i]![i] = true;
         }
-        return { won: true, resultData };
+        return { resultMatrix: resultData, type: 'diag', index: 0 };
     }
 
     // Check anti-diagonal
@@ -94,7 +91,7 @@ export function checkWin(
         for (let i = 0; i < rows; i++) {
             resultData[i]![rows - 1 - i] = true;
         }
-        return { won: true, resultData };
+        return { resultMatrix: resultData, type: 'anti-diag', index: 0 };
     }
 
     return false;

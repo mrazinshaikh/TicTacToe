@@ -1,28 +1,30 @@
 <template>
     <div class="flex justify-center items-center">
         <div
-            class="grid justify-center"
-            :class="[{ 'cursor-progress opacity-10 animate-pulse': isBoardLoading }]"
-            :disabled="isBoardLoading"
+            class="relative grid justify-center"
+            :class="[{ 'cursor-progress opacity-10 animate-pulse': game.isBoardLoading }]"
+            :disabled="game.isBoardLoading"
             :style="{
-                gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
-                gridTemplateRows: `repeat(${rows}, minmax(0, 1fr))`,
+                gridTemplateColumns: `repeat(${game.cols}, minmax(0, 1fr))`,
+                gridTemplateRows: `repeat(${game.rows}, minmax(0, 1fr))`,
             }"
         >
             <template
-                v-for="(row, rowIndex) in Array.from(Array(rows))"
+                v-for="(row, rowIndex) in Array.from(Array(game.rows))"
                 :key="`board_row_${rowIndex}`"
             >
                 <template
-                    v-for="(col, colIndex) in Array.from(Array(cols))"
+                    v-for="(col, colIndex) in Array.from(Array(game.cols))"
                     :key="`board_column_${colIndex}`"
                 >
                     <UCheckbox
-                        :value="currentPlayer"
+                        :value="game.currentPlayer"
                         :disabled="
-                            isBoardLoading || isLoading || board[rowIndex]?.[colIndex] !== null
+                            game.isBoardLoading
+                                || game.isLoading
+                                || game.board[rowIndex]?.[colIndex] !== null
                         "
-                        :model-value="board[rowIndex]?.[colIndex] !== null"
+                        :model-value="game.board[rowIndex]?.[colIndex] !== null"
                         :ui="{
                             base: 'hidden!',
                             wrapper: 'ms-0',
@@ -38,50 +40,58 @@
                             ]" -->
                             <div
                                 class="relative size-24 border border-pancho-600 group"
-                                :class="[{ 'pointer-events-none': isBoardLoading }]"
+                                :class="[{ 'pointer-events-none': game.isBoardLoading }]"
                             >
                                 <PlayerIcon
-                                    v-if="board[rowIndex]?.[colIndex]"
-                                    :value="board[rowIndex]?.[colIndex]"
+                                    v-if="game.board[rowIndex]?.[colIndex]"
+                                    :value="game.board[rowIndex]?.[colIndex]"
                                     :class="`w-full h-full ${
-                                        winningCells[rowIndex]?.[colIndex]
+                                        game.resultData.resultMatrix[rowIndex]?.[colIndex]
                                             ? 'zoom-scale-animation'
                                             : ''
                                     }`"
                                 />
                                 <PlayerIcon
                                     v-else
-                                    :value="currentPlayer"
+                                    :value="game.currentPlayer"
                                     :class="'absolute hidden indent-0 w-full h-full pointer-events-none opacity-20 group-hover:block'"
                                 />
+
+                                <div
+                                    v-show="game.resultData.resultMatrix[rowIndex]?.[colIndex]"
+                                    class="absolute inset-0 flex items-center justify-center overflow-hidden zoom-scale-animation"
+                                >
+                                    <div
+                                        class="w-full h-1 bg-pancho-500"
+                                        :class="[
+                                            { 'rotate-90': game.resultData.type === 'col' },
+                                            {
+                                                'rotate-45 scale-150':
+                                                    game.resultData.type === 'diag',
+                                            },
+                                            {
+                                                '-rotate-45 scale-150':
+                                                    game.resultData.type === 'anti-diag',
+                                            },
+                                        ]"
+                                    />
+                                </div>
                             </div>
                         </template>
                     </UCheckbox>
                 </template>
             </template>
+
+            <slot name="winning-line" />
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import type { CellValue } from '~/types/game.types';
-
-defineProps<{
-    board: CellValue[][];
-    currentPlayer: CellValue;
-    winningCells: boolean[][];
-    isLoading: boolean;
-    isBoardLoading: boolean;
-    rows: number;
-    cols: number;
-}>();
-
-const emit = defineEmits<{
-    (event: 'cell-clicked', rowIndex: number, colIndex: number): void;
-}>();
+const game = useGameStore();
 
 const handleCellClick = (rowIndex: number, colIndex: number): void => {
-    emit('cell-clicked', rowIndex, colIndex);
+    game.makeMove(rowIndex, colIndex);
 };
 </script>
 

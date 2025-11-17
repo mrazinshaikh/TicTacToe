@@ -1,18 +1,18 @@
 <template>
-    <div class="relative">
-        <div
-            class="fixed inset-0 h-screen w-screen overflow-hidden z-50 bg-gray-500/60"
-            :class="$attrs.class"
-        >
-            <div class="absolute top-0 ring-0 w-full flex items-center justify-end">
-                <UButton
-                    size="xl"
-                    variant="ghost"
-                    icon="i-lucide-x"
-                    class="hover:bg-transparent! cursor-pointer text-white"
-                    @click="game.closeResult()"
-                />
-            </div>
+    <div
+        class="fixed inset-0 h-screen w-svw overflow-hidden z-50 bg-gray-500/60"
+    >
+        <div class="w-full flex items-center justify-end pr-0 md:pr-4">
+            <UButton
+                size="xl"
+                variant="ghost"
+                icon="i-lucide-x"
+                class="hover:bg-transparent! cursor-pointer text-white"
+                @click="game.closeResult()"
+            />
+        </div>
+
+        <div :class="$attrs.class">
             <slot />
         </div>
     </div>
@@ -20,4 +20,8 @@
 
 <script setup lang="ts">
 const game = useGameStore();
+
+defineOptions({
+    inheritAttrs: false,
+});
 </script>

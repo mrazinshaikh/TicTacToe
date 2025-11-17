@@ -1,5 +1,5 @@
 import type { CellValue, GameState } from '~/types/game.types';
-import { checkWin } from '~/utils/checkWin';
+import { checkWin, type WinResponse } from '~/utils/checkWin';
 import { initBoardMatrix } from '~/utils/shared';
 import { isBoardFull } from '~/utils/board.utils';
 
@@ -10,14 +10,23 @@ import { isBoardFull } from '~/utils/board.utils';
 export const useGameState = (rows: number, cols: number): GameState => {
     const isResultOpen = ref<boolean>(true);
     const winner = ref<CellValue | null>(null);
-    const resultData = ref<boolean[][]>(initBoardMatrix(rows, cols, false));
+    const resultData = ref<WinResponse>({
+        resultMatrix: initBoardMatrix(rows, cols, false),
+        type: null,
+        index: 0,
+    });
     const isGameOver = computed(() => winner.value !== null || isDraw.value);
     const isDraw = ref<boolean>(false);
 
-    const setWinner = (player: CellValue, winningCells: boolean[][]): void => {
+    const setWinner = (player: CellValue, winResult: WinResponse): void => {
         isResultOpen.value = true;
         winner.value = player;
-        resultData.value = winningCells;
+        resultData.value = {
+            ...resultData.value,
+            resultMatrix: winResult.resultMatrix,
+            type: winResult.type,
+            index: winResult.index,
+        };
     };
 
     const setDraw = (): void => {
@@ -27,7 +36,11 @@ export const useGameState = (rows: number, cols: number): GameState => {
 
     const reset = (): void => {
         winner.value = null;
-        resultData.value = initBoardMatrix(rows, cols, false);
+        resultData.value = {
+            resultMatrix: initBoardMatrix(rows, cols, false),
+            type: 'row',
+            index: 0,
+        };
         isDraw.value = false;
         isResultOpen.value = false;
     };
@@ -62,8 +75,8 @@ export const checkGameStatus = (
     // Check for win
     const winResult = checkWin(rows, cols, board, currentPlayer);
 
-    if (winResult && winResult.won) {
-        gameState.setWinner(currentPlayer, winResult.resultData);
+    if (winResult && winResult.resultMatrix) {
+        gameState.setWinner(currentPlayer, winResult);
         return;
     }
 

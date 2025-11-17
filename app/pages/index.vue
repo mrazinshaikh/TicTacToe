@@ -6,16 +6,7 @@
             </h1>
         </div>
 
-        <GameBoard
-            :board="game.board"
-            :current-player="game.currentPlayer"
-            :winning-cells="game.resultData"
-            :is-loading="game.isLoading"
-            :is-board-loading="game.isBoardLoading"
-            :rows="game.rows"
-            :cols="game.cols"
-            @cell-clicked="handleCellClick"
-        />
+        <GameBoard />
 
         <div class="w-full mt-4">
             <div class="w-max mx-auto flex items-center justify-center gap-2">
@@ -60,10 +51,6 @@
 
 <script lang="ts" setup>
 const game = useGameStore();
-
-function handleCellClick(rowIndex: number, colIndex: number): void {
-    game.makeMove(rowIndex, colIndex);
-}
 
 function handleResetGame(): void {
     game.resetGame();
