@@ -11,6 +11,11 @@ export type CellValue = 'X' | 'O' | null;
 export type Player = 'X' | 'O';
 
 /**
+ * Game mode types
+ */
+export type GameMode = 'vsPlayer' | 'vsBot';
+
+/**
  * Game configuration interface
  */
 export interface GameConfig {

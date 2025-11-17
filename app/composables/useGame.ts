@@ -1,16 +1,18 @@
-import type { UseGameReturn } from '~/types/game.types';
+import type { UseGameReturn, GameMode } from '~/types/game.types';
 import { getGameConfig } from '~/config/game.config';
 import { useBoardState, setCellValue, resetBoard } from './useBoardState';
 import { usePlayerManager } from './usePlayerManager';
 import { useGameState, checkGameStatus } from './useGameState';
 import { useLoadingState } from './useLoadingState';
+import { useBotPlayer } from './useBotPlayer';
 import { isCellEmpty } from '~/utils/board.utils';
 
 /**
  * Main game orchestrator composable
  * Coordinates all sub-composables and provides unified game API
+ * @param gameMode - Optional game mode ('vsPlayer' or 'vsBot'). Can be a ref for reactivity. Defaults to 'vsPlayer'
  */
-export const useGame = (): UseGameReturn => {
+export const useGame = (gameMode: GameMode | Ref<GameMode> = 'vsPlayer'): UseGameReturn => {
     const config = getGameConfig();
 
     // Initialize sub-composables
@@ -18,6 +20,17 @@ export const useGame = (): UseGameReturn => {
     const playerManager = usePlayerManager(config.defaultPlayer);
     const gameState = useGameState(config.rows, config.cols);
     const loadingState = useLoadingState();
+
+    // Convert gameMode to a ref if it's not already
+    const gameModeRef = isRef(gameMode) ? gameMode : ref(gameMode);
+
+    // Always initialize bot player (we'll conditionally use it)
+    const botPlayer = useBotPlayer({
+        botPlayer: config.defaultPlayer, // Bot plays as the starting player
+        rows: config.rows,
+        cols: config.cols,
+        delay: 500, // 500ms delay for better UX
+    });
 
     /**
      * Make a move on the board
@@ -53,6 +66,20 @@ export const useGame = (): UseGameReturn => {
             // Switch player only if game is not over
             if (!gameState.isGameOver.value) {
                 playerManager.switchPlayer();
+
+                // If vsBot mode and it's bot's turn, make bot move
+                if (gameModeRef.value === 'vsBot' && botPlayer.isBotTurn(playerManager.currentPlayer.value)) {
+                    // Use nextTick to ensure board state is updated before bot calculates move
+                    nextTick(() => {
+                        botPlayer.makeBotMove(
+                            boardState.data.value,
+                            (row, col) => {
+                                // Recursively call makeMove for bot's move
+                                makeMove(row, col);
+                            },
+                        );
+                    });
+                }
             }
         }
         finally {
@@ -69,6 +96,18 @@ export const useGame = (): UseGameReturn => {
         gameState.reset();
         loadingState.setLoading(false);
         loadingState.setBoardLoading(false);
+
+        // If vsBot mode and bot goes first, trigger bot move after reset
+        if (gameModeRef.value === 'vsBot' && botPlayer.isBotTurn(playerManager.currentPlayer.value)) {
+            nextTick(() => {
+                botPlayer.makeBotMove(
+                    boardState.data.value,
+                    (row, col) => {
+                        makeMove(row, col);
+                    },
+                );
+            });
+        }
     };
 
     return {
