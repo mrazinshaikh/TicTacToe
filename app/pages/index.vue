@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full min-h-screen w-screen bg-pancho-200">
+    <div class="">
         <div class="flex items-center justify-center p-4 mb-12">
             <h1 class="text-5xl">
                 Tic Tac Toe

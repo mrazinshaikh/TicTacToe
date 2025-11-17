@@ -1,7 +1,7 @@
 <template>
-    <div class="mx-auto flex justify-center items-center">
+    <div class="flex justify-center items-center">
         <div
-            class="w-max grid justify-center border border-pancho-600"
+            class="grid justify-center"
             :class="[{ 'cursor-progress opacity-10 animate-pulse': isBoardLoading }]"
             :disabled="isBoardLoading"
             :style="{
@@ -30,6 +30,12 @@
                         @update:model-value="() => handleCellClick(rowIndex, colIndex)"
                     >
                         <template #label>
+                            <!-- :class="[
+                                'relative size-24 group',
+                                rowIndex < rows - 1 ? 'border-b-2 border-pancho-600' : '',
+                                colIndex < cols - 1 ? 'border-r-2 border-pancho-600' : '',
+                                { 'pointer-events-none': isBoardLoading },
+                            ]" -->
                             <div
                                 class="relative size-24 border border-pancho-600 group"
                                 :class="[{ 'pointer-events-none': isBoardLoading }]"

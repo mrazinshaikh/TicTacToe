@@ -2,6 +2,9 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+:root {
+    --ui-bg: var(--color-pancho-200);
+}
 @theme {
     /* Nuxt UI overrides */
     --ui-text-dimmed: var(--ui-color-neutral-400);
