@@ -5,6 +5,8 @@
         arrow
     >
         <UButton
+            name="Settings"
+            aria-label="Settings"
             icon="i-lucide-settings"
             color="neutral"
             variant="ghost"
