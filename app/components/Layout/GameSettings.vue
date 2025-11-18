@@ -35,7 +35,10 @@
                             <div>
                                 <div
                                     class="grid border border-gray-700 size-8"
-                                    :style="{ '--n': form.size || 3, 'grid-template-columns': `repeat(${form.size || 3},1fr)` }"
+                                    :style="{
+                                        '--n': form.size || 3,
+                                        'grid-template-columns': `repeat(${form.size || 3},1fr)`,
+                                    }"
                                 >
                                     <div
                                         v-for="i in (form.size || 3) * (form.size || 3)"
@@ -65,6 +68,15 @@
                             @click.prevent="() => handleSave(close)"
                         />
                     </div>
+                    <div>
+                        <UButton
+                            variant="outline"
+                            icon="i-lucide-list-restart"
+                            class="w-full text-pancho-700"
+                            label="Reset to default"
+                            @click.prevent="() => handleConfigReset(close)"
+                        />
+                    </div>
                 </form>
             </div>
         </template>
@@ -73,6 +85,7 @@
 
 <script setup lang="ts">
 import type { RadioGroupItem } from '@nuxt/ui';
+import { getGameConfig } from '~/config/game.config';
 import { PLAYER_O, PLAYER_X } from '~/constants/game.constants';
 import type { Player } from '~/types/game.types';
 
@@ -94,7 +107,11 @@ const players: RadioGroupItem[] = [
 ];
 
 function handleSave(close: () => void) {
-    if (!confirm('This action will reset the current game and update the game configuration. Are you sure?')) {
+    if (
+        !confirm(
+            'This action will reset the current game and update the game configuration. Are you sure?',
+        )
+    ) {
         return;
     }
 
@@ -104,6 +121,20 @@ function handleSave(close: () => void) {
         defaultPlayer: form.value.defaultPlayer,
     });
     game.resetGame();
+    close();
+}
+
+function handleConfigReset(close: () => void) {
+    if (!confirm('This action will reset the game configuration to default. Are you sure?')) {
+        return;
+    }
+
+    const config = getGameConfig();
+    game.updateGameConfig(config);
+    game.resetGame();
+
+    form.value.size = config.rows;
+    form.value.defaultPlayer = config.defaultPlayer;
     close();
 }
 

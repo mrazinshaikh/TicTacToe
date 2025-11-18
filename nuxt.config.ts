@@ -5,6 +5,15 @@ export default defineNuxtConfig({
     modules: ['@nuxt/eslint', '@nuxt/ui', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt'],
     devtools: { enabled: process.env.NODE_ENV === 'development' },
 
+    app: {
+        head: {
+            htmlAttrs: {
+                // enforce dark mode by default.
+                class: 'dark',
+            },
+        },
+    },
+
     css: ['./app/assets/css/main.css'],
     compatibilityDate: '2025-07-15',
 

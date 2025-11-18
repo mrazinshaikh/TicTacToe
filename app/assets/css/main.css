@@ -2,6 +2,9 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+/* https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
     --ui-bg: var(--color-pancho-200);
 }
