@@ -4,5 +4,5 @@
         "strings": "on"
     },
     "tailwindCSS.classAttributes": ["class", "ui"],
-    "cSpell.words": ["mrazinshaikh", "pancho", "Razin", "Shaikh"]
+    "cSpell.words": ["mrazinshaikh", "pancho", "prerender", "Razin", "Shaikh"]
 }
