@@ -24,8 +24,6 @@ export const useGameScoreStore = defineStore('game-score', () => {
     };
 }, {
     persist: {
-        storage: piniaPluginPersistedstate.cookies({
-            maxAge: 60 * 60,
-        }),
+        storage: piniaPluginPersistedstate.localStorage(),
     },
 });

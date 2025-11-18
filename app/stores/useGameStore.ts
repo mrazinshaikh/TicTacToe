@@ -201,8 +201,6 @@ export const useGameStore = defineStore('game-store', () => {
     };
 }, {
     persist: {
-        storage: piniaPluginPersistedstate.cookies({
-            maxAge: 60 * 60,
-        }),
+        storage: piniaPluginPersistedstate.localStorage(),
     },
 });
