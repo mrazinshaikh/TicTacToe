@@ -204,16 +204,5 @@ export const useGameStore = defineStore('game-store', () => {
         storage: piniaPluginPersistedstate.cookies({
             maxAge: 60 * 60,
         }),
-        // Only persist specific state (excludes loading states, etc.).
-        pick: [
-            'board',
-            'currentPlayer',
-            'winner',
-            'resultData',
-            'isDraw',
-            'isResultOpen',
-            'config',
-            'isFreshBoard',
-        ],
     },
 });
