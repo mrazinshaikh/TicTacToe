@@ -21,10 +21,10 @@ const iconName = computed(() => {
     const value = props.value ?? currentPlayer?.value;
 
     if (value === PLAYER_X) {
-        return 'i-lucide-x';
+        return 'lucide:x';
     }
     else if (value === PLAYER_O) {
-        return 'i-lucide-circle';
+        return 'lucide:circle';
     }
 
     return null;

@@ -4,7 +4,7 @@
             <span>Made With</span>
             <UIcon
                 :customize="customize"
-                name="i-lucide-heart"
+                name="lucide:heart"
                 class="size-6 text-red-700"
             />
             <span>By</span>
@@ -30,7 +30,7 @@
                         mrazinshaikh/TicTacToe
                     </span>
                     <UIcon
-                        name="i-lucide-github"
+                        name="lucide:github"
                         class="size-6"
                     />
                 </div>

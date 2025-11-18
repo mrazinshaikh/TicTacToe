@@ -2,7 +2,7 @@
     <ResultContainer class="flex justify-center">
         <div class="flex flex-col items-center justify-start translate-y-[10%]">
             <UIcon
-                name="i-lucide-handshake"
+                name="lucide:handshake"
                 class="size-32 text-gray-500"
             />
             <div class="mt-4 flex items-center justify-center">

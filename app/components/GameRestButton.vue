@@ -2,7 +2,7 @@
     <UButton
         variant="solid"
         color="neutral"
-        icon="i-lucide-refresh-cw"
+        icon="lucide:refresh-cw"
         label="Restart Game"
         @click="handleRestartGame"
     />

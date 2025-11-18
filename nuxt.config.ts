@@ -8,6 +8,7 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         'pinia-plugin-persistedstate/nuxt',
         '@nuxt/fonts',
+        '@vite-pwa/nuxt',
     ],
     devtools: { enabled: process.env.NODE_ENV === 'development' },
 
@@ -24,6 +25,14 @@ export default defineNuxtConfig({
     css: ['./app/assets/css/main.css'],
     compatibilityDate: '2025-07-15',
 
+    nitro: {
+        prerender: {
+            routes: [
+                '/',
+            ],
+        },
+    },
+
     vite: {
         css: {
             devSourcemap: false,
@@ -38,6 +47,7 @@ export default defineNuxtConfig({
             __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: true,
         },
     },
+    // debug: true,
 
     eslint: {
         config: {
@@ -48,11 +58,71 @@ export default defineNuxtConfig({
         },
     },
     icon: {
+        provider: 'none',
+        clientBundle: {
+            scan: true,
+        },
         customCollections: [
             {
                 prefix: 'custom',
                 dir: './app/assets/icons',
             },
         ],
+    },
+
+    pwa: {
+        registerType: 'autoUpdate',
+        devOptions: {
+            enabled: true,
+        },
+
+        manifest: {
+            name: 'Tic Tac Toe - By MRazinShaikh',
+            theme_color: '#efcca2',
+            icons: [
+                {
+                    src: 'board-192x192.png',
+                    sizes: '192x192',
+                    type: 'image/png',
+                },
+                {
+                    src: 'board-512x512.png',
+                    sizes: '512x512',
+                    type: 'image/png',
+                    purpose: 'any',
+                },
+                {
+                    src: 'board-512x512.png',
+                    sizes: '512x512',
+                    type: 'image/png',
+                    purpose: 'maskable',
+                },
+            ],
+            screenshots: [
+                {
+                    src: 'sample.jpg',
+                    type: 'image/jpeg',
+                    sizes: '1870x961',
+                    form_factor: 'narrow',
+                },
+                {
+                    src: 'sample.jpg',
+                    type: 'image/jpeg',
+                    sizes: '1870x961',
+                    form_factor: 'wide',
+                },
+            ],
+        },
+
+        workbox: {
+            globPatterns: ['**/*.{js,css,html,svg,png,ico,jpg,woff,woff2,json}'],
+            cleanupOutdatedCaches: true,
+            clientsClaim: true,
+        },
+
+        client: {
+            installPrompt: true,
+            periodicSyncForUpdates: 86400,
+        },
     },
 });

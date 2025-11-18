@@ -7,7 +7,7 @@
         <UButton
             name="Settings"
             aria-label="Settings"
-            icon="i-lucide-settings"
+            icon="lucide:settings"
             color="neutral"
             variant="ghost"
         />
@@ -17,7 +17,7 @@
                 <UTooltip text="Rest stored score and restart the game.">
                     <UButton
                         color="error"
-                        icon="i-lucide-rotate-ccw"
+                        icon="lucide:rotate-ccw"
                         class="w-full bg-red-500 text-white"
                         label="Reset Scores"
                         @click.prevent="() => handleReset()"
@@ -66,7 +66,7 @@
                     </div>
                     <div>
                         <UButton
-                            icon="i-lucide-save"
+                            icon="lucide:save"
                             class="w-full bg-pancho-500"
                             label="Save"
                             @click.prevent="() => handleSave(close)"
@@ -76,7 +76,7 @@
                         <UTooltip text="Rest game config and restart the game.">
                             <UButton
                                 variant="outline"
-                                icon="i-lucide-list-restart"
+                                icon="lucide:list-restart"
                                 class="w-full text-pancho-700"
                                 label="Reset to default"
                                 @click.prevent="() => handleConfigReset(close)"

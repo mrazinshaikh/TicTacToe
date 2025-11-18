@@ -4,7 +4,7 @@
             <UButton
                 size="xl"
                 variant="ghost"
-                icon="i-lucide-x"
+                icon="lucide:x"
                 class="hover:bg-transparent! cursor-pointer text-white"
                 @click="game.closeResult()"
             />
@@ -19,7 +19,7 @@
             <UButton
                 variant="outline"
                 color="neutral"
-                icon="i-lucide-x"
+                icon="lucide:x"
                 label="Close"
                 @click="game.closeResult()"
             />
