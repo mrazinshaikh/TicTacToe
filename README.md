@@ -1,75 +1,35 @@
-# Nuxt Minimal Starter
+# Tic Tac Toe
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+By **MRazinShaikh**
 
-## Setup
+![Tic Tac Toe Screenshot](./sample.jpg)
+
+## Installation
 
 Make sure to install dependencies:
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
 bun install
 ```
 
-## Development Server
+## Development
 
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
 bun run dev
 ```
 
-## Production
+## Deployment
 
-Build the application for production:
+This project is deployed on Vercel:
 
-```bash
-# npm
-npm run build
+**Live Site:** [https://tic-tac-toe-mrazinshaikh.vercel.app/](https://tic-tac-toe-mrazinshaikh.vercel.app/)
 
-# pnpm
-pnpm build
+### Deployment Configuration
 
-# yarn
-yarn build
+- **Build Command:** `bun run generate`
+- **Output Directory:** `.output/public`
+- **Platform:** Vercel
 
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+The project uses Nuxt 4 with static site generation.
