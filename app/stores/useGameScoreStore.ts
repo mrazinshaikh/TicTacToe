@@ -9,7 +9,6 @@ export const useGameScoreStore = defineStore('game-score', () => {
 
     function updateScore(player: Player) {
         player_wins[player] = (player_wins[player] ?? 0) + 1;
-        console.log(player_wins.value);
     }
 
     function reset() {
