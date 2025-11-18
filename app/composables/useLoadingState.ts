@@ -24,11 +24,6 @@ export const useLoadingState = (): LoadingState => {
         isBoardLoading.value = value;
     };
 
-    // Stop board loading when component is mounted
-    onMounted(() => {
-        isBoardLoading.value = false;
-    });
-
     return {
         isLoading,
         isBoardLoading,

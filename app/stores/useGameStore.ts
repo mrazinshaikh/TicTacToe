@@ -22,6 +22,10 @@ export const useGameStore = defineStore('game-store', () => {
         loadingState = useLoadingState();
         isFreshBoard.value = true;
     };
+
+    onMounted(() => {
+        loadingState.isBoardLoading.value = false;
+    });
     /**
      * Make a move on the board
      */
@@ -87,6 +91,7 @@ export const useGameStore = defineStore('game-store', () => {
 
         // Player state
         currentPlayer: playerManager.currentPlayer,
+        defaultPlayer: config.value.defaultPlayer,
 
         // Game state
         winner: gameState.winner,
