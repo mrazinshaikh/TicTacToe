@@ -10,7 +10,7 @@
             <div
                 v-for="i in 9"
                 :key="i"
-                class="border border-pancho-600 size-24 bg-pancho-200 animate-pulse"
+                class="border border-pancho-600 size-20 md:size-24 bg-pancho-200 animate-pulse"
             />
         </div>
     </div>
