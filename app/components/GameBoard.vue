@@ -42,8 +42,9 @@
                                 class="relative border border-pancho-600 group"
                                 :class="[
                                     { 'pointer-events-none': game.isBoardLoading },
-                                    { 'size-24': game.rows < 5 },
-                                    { 'size-16 sm:size-18 md:size-20': game.rows >= 5 },
+                                    { 'size-18 md:size-24': game.rows < 4 },
+                                    { 'size-16 sm:size-18 md:size-24 lg:size-24': game.rows === 4 },
+                                    { 'size-10 sm:size-12 md:size-20 lg:size-24': game.rows === 5 },
                                 ]"
                             >
                                 <PlayerIcon
