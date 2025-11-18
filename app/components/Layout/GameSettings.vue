@@ -12,13 +12,15 @@
 
         <template #content="{ close }">
             <div class="w-48 p-4">
-                <UButton
-                    color="error"
-                    icon="i-lucide-rotate-ccw"
-                    class="w-full bg-red-500 text-white"
-                    label="Reset"
-                    @click.prevent="() => handleReset()"
-                />
+                <UTooltip text="Rest stored score and restart the game.">
+                    <UButton
+                        color="error"
+                        icon="i-lucide-rotate-ccw"
+                        class="w-full bg-red-500 text-white"
+                        label="Reset Scores"
+                        @click.prevent="() => handleReset()"
+                    />
+                </UTooltip>
 
                 <form class="mt-3 space-y-3">
                     <div>
@@ -69,13 +71,15 @@
                         />
                     </div>
                     <div>
-                        <UButton
-                            variant="outline"
-                            icon="i-lucide-list-restart"
-                            class="w-full text-pancho-700"
-                            label="Reset to default"
-                            @click.prevent="() => handleConfigReset(close)"
-                        />
+                        <UTooltip text="Rest game config and restart the game.">
+                            <UButton
+                                variant="outline"
+                                icon="i-lucide-list-restart"
+                                class="w-full text-pancho-700"
+                                label="Reset to default"
+                                @click.prevent="() => handleConfigReset(close)"
+                            />
+                        </UTooltip>
                     </div>
                 </form>
             </div>
