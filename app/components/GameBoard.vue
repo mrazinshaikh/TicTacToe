@@ -39,8 +39,12 @@
                                 { 'pointer-events-none': isBoardLoading },
                             ]" -->
                             <div
-                                class="relative size-24 border border-pancho-600 group"
-                                :class="[{ 'pointer-events-none': game.isBoardLoading }]"
+                                class="relative border border-pancho-600 group"
+                                :class="[
+                                    { 'pointer-events-none': game.isBoardLoading },
+                                    { 'size-24': game.rows < 5 },
+                                    { 'size-16 sm:size-18 md:size-20': game.rows >= 5 },
+                                ]"
                             >
                                 <PlayerIcon
                                     v-if="game.board[rowIndex]?.[colIndex]"
