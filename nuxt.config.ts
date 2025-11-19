@@ -60,6 +60,10 @@ export default defineNuxtConfig({
     icon: {
         provider: 'none',
         clientBundle: {
+            icons: [
+                'lucide:plus',
+                'lucide:minus',
+            ],
             scan: true,
         },
         customCollections: [
