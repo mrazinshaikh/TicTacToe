@@ -53,7 +53,8 @@ export default defineNuxtConfig({
         typeCheck: true,
         tsConfig: {
             include: [
-                '../vitest.config.ts',
+                '../**/*.ts',
+                // '../vitest.config.ts',
                 '../test/**/*',
             ],
         },
