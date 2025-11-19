@@ -4,6 +4,7 @@ import { loadFull } from 'tsparticles'; // if you are going to use `loadFull`, i
 // import { loadSlim } from '@tsparticles/slim'; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 
 export default defineNuxtPlugin((nuxtApp) => {
+    /* v8 ignore if -- @preserve */
     if (import.meta.server) {
         // no-op stub for SSR.
         nuxtApp.vueApp.component('vue-particles', { render: () => null });
