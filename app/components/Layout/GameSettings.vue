@@ -91,7 +91,7 @@
 
 <script setup lang="ts">
 import type { RadioGroupItem } from '@nuxt/ui';
-import { getGameConfig } from '~/config/game.config';
+import { getDefaultGameConfig } from '~/config/game.config';
 import { PLAYER_O, PLAYER_X } from '~/constants/game.constants';
 import type { Player } from '~/types/game.types';
 
@@ -135,7 +135,7 @@ function handleConfigReset(close: () => void) {
         return;
     }
 
-    const config = getGameConfig();
+    const config = getDefaultGameConfig();
     game.updateGameConfig(config);
     game.resetGame();
 
