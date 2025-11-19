@@ -1,4 +1,5 @@
-import type { CellValue } from '~/types/game.types';
+import type { CellValue, Player } from '~/types/game.types';
+import { PLAYER_X, PLAYER_O } from '~/constants/game.constants';
 
 /**
  * Initialize a 2D matrix for the game board
@@ -13,3 +14,19 @@ export function initBoardMatrix<T extends CellValue | boolean>(
         Array(Number(cols)).fill(defaultValue),
     ) as T extends boolean ? boolean[][] : CellValue[][];
 }
+
+/**
+ * Get the next player in turn
+ */
+export const getNextPlayer = (currentPlayer: CellValue): Player => {
+    return currentPlayer === PLAYER_X ? PLAYER_O : PLAYER_X;
+};
+
+/**
+ * Validate if a value is a valid player
+ *
+ * @deprecated - NOT IN USE.
+ */
+export const isValidPlayer = (value: unknown): value is Player => {
+    return value === PLAYER_X || value === PLAYER_O;
+};

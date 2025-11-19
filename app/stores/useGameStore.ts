@@ -1,10 +1,9 @@
 import { defineStore } from 'pinia';
-import { getGameConfig } from '~/config/game.config';
+import { getDefaultGameConfig } from '~/config/game.config';
 import type { GameConfig, CellValue, Player } from '~/types/game.types';
 import { initBoardMatrix } from '~/utils/shared';
 import { EMPTY_CELL } from '~/constants/game.constants';
 import { isCellEmpty, isBoardFull } from '~/utils/board.utils';
-import { getNextPlayer } from '~/utils/player.utils';
 import { checkWin, type WinResponse } from '~/utils/checkWin';
 
 /**
@@ -15,7 +14,7 @@ export const useGameStore = defineStore('game-store', () => {
     // GAME STATE
 
     // Configuration
-    const config = ref<GameConfig>(getGameConfig());
+    const config = ref<GameConfig>(getDefaultGameConfig());
     const isFreshBoard = ref(true);
 
     // Board state

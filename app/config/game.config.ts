@@ -18,13 +18,6 @@ export const gameConfig: GameConfig = {
 /**
  * Get the current game configuration
  */
-export const getGameConfig = (): GameConfig => {
+export const getDefaultGameConfig = (): GameConfig => {
     return { ...gameConfig };
-};
-
-/**
- * Update game configuration (useful for different game modes)
- */
-export const updateGameConfig = (config: Partial<GameConfig>): void => {
-    Object.assign(gameConfig, config);
 };

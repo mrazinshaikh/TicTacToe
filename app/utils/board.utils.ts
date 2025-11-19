@@ -24,6 +24,8 @@ export const isBoardFull = (board: CellValue[][]): boolean => {
 
 /**
  * Get all empty cells on the board
+ *
+ * @deprecated - NOT IN USE. might be useful for bot player.
  */
 export const getEmptyCells = (board: CellValue[][]): Array<{ row: number; col: number }> => {
     const emptyCells: Array<{ row: number; col: number }> = [];
@@ -41,6 +43,8 @@ export const getEmptyCells = (board: CellValue[][]): Array<{ row: number; col: n
 
 /**
  * Check if coordinates are valid for the board
+ *
+ * @deprecated - NOT IN USE. might be useful for bot player.
  */
 export const isValidCoordinate = (board: CellValue[][], row: number, col: number): boolean => {
     return (

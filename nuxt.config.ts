@@ -9,6 +9,7 @@ export default defineNuxtConfig({
         'pinia-plugin-persistedstate/nuxt',
         '@nuxt/fonts',
         '@vite-pwa/nuxt',
+        '@nuxt/test-utils/module',
     ],
     devtools: { enabled: process.env.NODE_ENV === 'development' },
 
@@ -45,6 +46,17 @@ export default defineNuxtConfig({
         ],
         define: {
             __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: true,
+        },
+    },
+
+    typescript: {
+        typeCheck: true,
+        tsConfig: {
+            include: [
+                '../**/*.ts',
+                // '../vitest.config.ts',
+                '../test/**/*',
+            ],
         },
     },
     // debug: true,

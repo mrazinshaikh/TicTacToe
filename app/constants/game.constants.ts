@@ -18,13 +18,6 @@ export const DEFAULT_BOARD_COLS = 3;
 export const DEFAULT_STARTING_PLAYER: Player = PLAYER_O;
 
 /**
- * Animation constants
- */
-export const WINNING_ANIMATION_DURATION = 0.5; // seconds
-export const WINNING_ANIMATION_ITERATIONS = 3;
-export const WINNING_ANIMATION_SCALE = 1.5;
-
-/**
  * Empty cell value
  */
 export const EMPTY_CELL = null;
