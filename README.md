@@ -33,3 +33,7 @@ This project is deployed on Vercel:
 - **Platform:** Vercel
 
 The project uses Nuxt 4 with static site generation.
+
+### Test Coverage
+
+![Test Coverage](./test-coverage.png)
