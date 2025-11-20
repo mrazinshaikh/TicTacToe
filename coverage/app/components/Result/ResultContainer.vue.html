@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for app/components/GameStatus.vue</title>
+    <title>Code coverage report for app/components/Result/ResultContainer.vue</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">app/components</a> GameStatus.vue</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">app/components/Result</a> ResultContainer.vue</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -90,9 +90,32 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">29x</span>
-<span class="cline-any cline-yes">26x</span>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -111,38 +134,42 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-    &lt;div class="w-full mt-4"&gt;
-        &lt;div class="w-max mx-auto flex items-center justify-center gap-2"&gt;
-            &lt;template v-if="game.winner"&gt;
-                &lt;PlayerIcon
-                    :value="game.winner"
-                    class="size-6"
-                /&gt;
-                &lt;span class="text-lg font-bold"&gt; Won the Game! &lt;/span&gt;
-            &lt;/template&gt;
-            &lt;template v-else-if="game.isDraw"&gt;
-                &lt;span class="text-lg font-bold"&gt; It's a Draw! &lt;/span&gt;
-            &lt;/template&gt;
-            &lt;template v-else&gt;
-                &lt;PlayerIcon
-                    :value="game.currentPlayer"
-                    class="size-6"
-                /&gt;
-                &lt;span class="text-lg"&gt; Your Turn &lt;/span&gt;
-            &lt;/template&gt;
+    &lt;div class="fixed inset-0 h-screen w-svw overflow-hidden z-50 bg-gray-500/60"&gt;
+        &lt;div class="w-full flex items-center justify-end pr-0 md:pr-4"&gt;
+            &lt;UButton
+                size="xl"
+                variant="ghost"
+                icon="lucide:x"
+                class="hover:bg-transparent! cursor-pointer text-white"
+                @click="game.closeResult()"
+            /&gt;
+        &lt;/div&gt;
+&nbsp;
+        &lt;div :class="$attrs.class"&gt;
+            &lt;slot /&gt;
+        &lt;/div&gt;
+&nbsp;
+        &lt;div class="mt-16 w-full flex items-center justify-center gap-3"&gt;
+            &lt;GameRestButton /&gt;
+            &lt;UButton
+                variant="outline"
+                color="neutral"
+                icon="lucide:x"
+                label="Close"
+                @click="game.closeResult()"
+            /&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/template&gt;
 &nbsp;
 &lt;script setup lang="ts"&gt;
 const game = useGameStore();
+&nbsp;
+defineOptions({
+    inheritAttrs: false,
+});
 &lt;/script&gt;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -153,14 +180,14 @@ const game = useGameStore();
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2025-11-20T08:53:46.100Z
             </div>
-        <script src="../../prettify.js"></script>
+        <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
     </body>
 </html>
     
