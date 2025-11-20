@@ -32,7 +32,7 @@ onMounted(() => {
 
     if ($pwa?.offlineReady) {
         toast.add({
-            title: 'Offline Read.',
+            title: 'Offline Ready.',
             color: 'success',
         });
     }

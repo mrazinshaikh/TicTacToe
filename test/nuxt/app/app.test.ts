@@ -72,7 +72,7 @@ describe('check app root', () => {
 
         expect(toastAddMock).toHaveBeenCalledWith(
             expect.objectContaining({
-                title: 'Offline Read.',
+                title: 'Offline Ready.',
                 color: 'success',
             }),
         );
