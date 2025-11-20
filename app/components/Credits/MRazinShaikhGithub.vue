@@ -1,7 +1,14 @@
 <template>
     <NuxtLink
         class="hover:underline"
-        href="https://github.com/MRazinShaikh"
+        :href="profileUrl"
         target="_blank"
-    >MRazinShaikh</NuxtLink>
+    >
+        {{ profileName }}
+    </NuxtLink>
 </template>
+
+<script setup lang="ts">
+const profileUrl = 'https://github.com/MRazinShaikh';
+const profileName = 'MRazinShaikh';
+</script>

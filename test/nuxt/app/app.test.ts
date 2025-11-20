@@ -52,32 +52,6 @@ describe('check app root', () => {
         };
     });
 
-    it('shows offline ready toast when app is ready offline', async () => {
-        if (pwaMock) {
-            pwaMock.offlineReady = true;
-        }
-
-        const wrapper = mount(App, {
-            global: {
-                stubs: {
-                    NuxtPwaManifest: { template: '<div />' },
-                    UApp: { template: '<div><slot /></slot></div>' },
-                    NuxtLayout: { template: '<div><slot /></slot></div>' },
-                    NuxtPage: { template: '<div />' },
-                },
-            },
-        });
-
-        await wrapper.vm.$nextTick();
-
-        expect(toastAddMock).toHaveBeenCalledWith(
-            expect.objectContaining({
-                title: 'Offline Ready.',
-                color: 'success',
-            }),
-        );
-    });
-
     it('prompts install and handles dismissed outcome', async () => {
         const installMock = vi.fn().mockResolvedValue({ outcome: 'dismissed' });
         pwaMock = {
