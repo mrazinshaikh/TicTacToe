@@ -92,6 +92,7 @@ export default defineNuxtConfig({
             icons: [
                 'lucide:plus',
                 'lucide:minus',
+                'lucide:check',
             ],
             scan: true,
         },
@@ -133,9 +134,9 @@ export default defineNuxtConfig({
             ],
             screenshots: [
                 {
-                    src: 'sample.jpg',
+                    src: 'sample-narrow.png',
                     type: 'image/jpeg',
-                    sizes: '1870x961',
+                    sizes: '489x874',
                     form_factor: 'narrow',
                 },
                 {

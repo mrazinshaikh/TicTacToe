@@ -26,15 +26,14 @@ useSeoMeta({
 const { $pwa } = useNuxtApp();
 
 const toast = useToast();
+const pwaInstallPromptClosed = useCookie('pwaInstallPromptClosed', {
+    default: () => false,
+    maxAge: 60 * 60 * 10, // 10 Hours
+});
 
 onMounted(() => {
-    checkAndInstallPwa();
-
-    if ($pwa?.offlineReady) {
-        toast.add({
-            title: 'Offline Ready.',
-            color: 'success',
-        });
+    if (!pwaInstallPromptClosed.value) {
+        checkAndInstallPwa();
     }
 });
 
@@ -55,6 +54,11 @@ function checkAndInstallPwa() {
                     },
                 },
             ],
+            close: {
+                onClick: () => {
+                    pwaInstallPromptClosed.value = true;
+                },
+            },
         });
     }
 }

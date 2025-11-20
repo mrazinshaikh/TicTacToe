@@ -13,20 +13,17 @@
                 </h2>
                 <small>
                     <span>By</span>
-                    <MRazinShaikhGithub class="ml-1" />
+                    <CreditsMRazinShaikhGithub class="ml-1" />
                 </small>
             </div>
         </div>
 
         <!-- End Block -->
         <div>
-            <GameSettings />
+            <LayoutGameSettings />
         </div>
     </header>
 </template>
 
 <script setup lang="ts">
-import MRazinShaikhGithub from '~/components/Credits/MRazinShaikhGithub.vue';
-
-const GameSettings = defineAsyncComponent(() => import('~/components/Layout/GameSettings.vue'));
 </script>

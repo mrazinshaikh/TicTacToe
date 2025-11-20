@@ -2,7 +2,7 @@
     <div>
         <Header />
 
-        <main class="min-h-[calc(100vh-180px)] md:min-h-[calc(100vh-150px)]">
+        <main class="min-h-[calc(100vh-198px)] md:min-h-[calc(100vh-150px)]">
             <slot />
         </main>
 

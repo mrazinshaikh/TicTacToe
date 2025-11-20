@@ -14,7 +14,10 @@
 
         <template #content="{ close }">
             <div class="w-48 p-4">
-                <UTooltip text="Reset stored scores and restart the game.">
+                <UTooltip
+                    text="Reset stored scores and restart the game."
+                    ignore-non-keyboard-focus
+                >
                     <UButton
                         color="error"
                         icon="lucide:rotate-ccw"
