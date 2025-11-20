@@ -34,7 +34,5 @@
 </template>
 
 <script lang="ts" setup>
-import GameStatus from '~/components/GameStatus.vue';
-
 const game = useGameStore();
 </script>

@@ -24,6 +24,24 @@ export default defineNuxtConfig({
     },
 
     css: ['./app/assets/css/main.css'],
+
+    appConfig: {
+        ui: {
+            colors: {
+                primary: 'pancho',
+                success: 'pancho',
+            },
+            button: {
+                slots: {
+                    base: 'cursor-pointer',
+                },
+            },
+        },
+    },
+
+    build: {
+        analyze: true,
+    },
     compatibilityDate: '2025-07-15',
 
     nitro: {

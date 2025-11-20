@@ -27,5 +27,6 @@
 
 <script setup lang="ts">
 import MRazinShaikhGithub from '~/components/Credits/MRazinShaikhGithub.vue';
-import GameSettings from '~/components/Layout/GameSettings.vue';
+
+const GameSettings = defineAsyncComponent(() => import('~/components/Layout/GameSettings.vue'));
 </script>

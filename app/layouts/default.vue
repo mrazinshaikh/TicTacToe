@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import Footer from '~/components/Layout/Footer.vue';
 import Header from '~/components/Layout/Header.vue';
+
+const Footer = defineAsyncComponent(() => import('~/components/Layout/Footer.vue'));
 </script>
